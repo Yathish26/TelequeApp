@@ -2,12 +2,17 @@
   "expo": {
     "name": "telapp",
     "slug": "telapp",
+    "scheme": "telapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yathz.teleque",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -20,6 +25,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "eac6c04f-d1e2-4209-838c-571488be021c"
+      }
+    },
+    "plugins": [
+      "expo-secure-store"
+    ]
   }
 }
