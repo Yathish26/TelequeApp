@@ -7,7 +7,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { APP_VERSION } from '../version';
 import { telegram } from '../lib/api';
 import { useAuth } from '../lib/auth';
-import { BLUE, Glass, GlassBackground, GlassButton } from '../components/ui';
+import { BLUE, Glass, GlassBackground, GlassView, liquidGlass } from '../components/ui';
 
 const initialsOf = (name = '') =>
     name.trim().split(/\s+/).slice(0, 2).map((part) => part[0]?.toUpperCase()).join('') || '?';
@@ -55,7 +55,7 @@ export default function ProfileScreen({ navigation }) {
 
     const links = [
         { icon: 'paper-plane-outline', label: 'My Bots', onPress: () => navigation.navigate('Bots') },
-        { icon: 'help-circle-outline', label: 'How it works', onPress: () => navigation.navigate('Home') },
+        { icon: 'help-circle-outline', label: 'How it works', onPress: () => navigation.navigate('Guide') },
     ];
 
     return (
@@ -113,10 +113,18 @@ export default function ProfileScreen({ navigation }) {
                     ))}
                 </Glass>
 
-                <GlassButton onPress={confirmSignOut} className="mt-6 rounded-full py-4">
-                    <Ionicons name="log-out-outline" size={18} color="#fff" />
-                    <Text className="font-semibold text-white">Log out</Text>
-                </GlassButton>
+                <Pressable onPress={confirmSignOut} className="mt-6 active:opacity-80" accessibilityRole="button">
+                    <GlassView
+                        glassEffectStyle="regular"
+                        tintColor={BLUE}
+                        isInteractive
+                        className="flex-row items-center justify-center gap-2 rounded-full py-4"
+                        style={!liquidGlass && { backgroundColor: BLUE }}
+                    >
+                        <Ionicons name="log-out-outline" size={18} color="#fff" />
+                        <Text className="font-semibold text-white">Log out</Text>
+                    </GlassView>
+                </Pressable>
 
                 <Text className="mt-6 text-center text-xs text-slate-500">Version {APP_VERSION}</Text>
             </ScrollView>

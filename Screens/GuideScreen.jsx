@@ -94,7 +94,8 @@ const faqs = [
 
 const queuePreview = ['Post 01', 'Post 02', 'Post 03', 'Post 04'];
 
-export default function HomeScreen({ navigation }) {
+// How TeleQueue works: setup steps, what you can post and the FAQ.
+export default function GuideScreen({ navigation }) {
     const insets = useSafeAreaInsets();
     const [botCount, setBotCount] = useState(0);
     const [openFaq, setOpenFaq] = useState(0);

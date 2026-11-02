@@ -335,7 +335,8 @@ function Sheet({ title, onClose, children }) {
     );
 }
 
-const INPUT = 'rounded-xl border border-white/80 bg-white/60 px-4 py-3 text-base text-slate-900';
+// text-[16px] (not text-base): text-base also sets a line height, which clips the bottom of g, y, p in iOS inputs.
+const INPUT = 'rounded-xl border border-white/80 bg-white/60 px-4 py-3 text-[16px] text-slate-900';
 
 function Field({ label, hint, children }) {
     return (

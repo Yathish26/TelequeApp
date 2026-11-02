@@ -9,16 +9,16 @@ export const TELEGRAM_BLUE = '#229ED9';
 // GlassView from expo-glass-effect. Builds made before expo-glass-effect was added don't have its
 // native code (importing it would crash with "Cannot find native module 'ExpoGlassEffect'"), so it's
 // only loaded when the native module exists; until the next `eas build` a plain View stands in.
-const { GlassView, isLiquidGlassAvailable } = requireOptionalNativeModule('ExpoGlassEffect')
-    ? require('expo-glass-effect')
-    : { GlassView: View, isLiquidGlassAvailable: () => false };
+const glassEffect = requireOptionalNativeModule('ExpoGlassEffect') ? require('expo-glass-effect') : null;
+
+export const GlassView = glassEffect ? glassEffect.GlassView : View;
 
 // Lets GlassView take Tailwind classes (rounded-3xl, p-6...) like any other view.
-if (GlassView !== View) cssInterop(GlassView, { className: 'style' });
+if (glassEffect) cssInterop(GlassView, { className: 'style' });
 
 // GlassView only draws Liquid Glass on iOS 26+. Elsewhere (Android, older iOS, older builds) it's a
 // plain view, so it gets a frosted white (or tint-coloured) background to keep the same look.
-const liquidGlass = isLiquidGlassAvailable();
+export const liquidGlass = glassEffect ? glassEffect.isLiquidGlassAvailable() : false;
 
 // A GlassView surface. `tint` colours it (e.g. a blue button); `interactive` makes it react to touches.
 export function Glass({ tint, interactive = false, className = '', style, children, ...props }) {

@@ -8,8 +8,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeBottomTabNavigator } from '@react-navigation/bottom-tabs/unstable';
 
 import { AuthProvider, useAuth } from './lib/auth';
-import HomeScreen from './Screens/HomeScreen';
 import BotsScreen from './Screens/BotsScreen';
+import GuideScreen from './Screens/GuideScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import LoginScreen from './Screens/LoginScreen';
 import SignupScreen from './Screens/SignupScreen';
@@ -20,8 +20,8 @@ const isAndroid = Platform.OS === 'android';
 // Every screen in the bottom tab bar. iOS uses SF Symbols; Android uses Ionicons.
 // LoginScreen and SignupScreen aren't tabs: they're shown instead of the tabs until the user signs in.
 const screens = [
-  { name: 'Home', component: HomeScreen, sf: ['house', 'house.fill'], androidIcon: 'home' },
   { name: 'Bots', component: BotsScreen, sf: ['paperplane', 'paperplane.fill'], androidIcon: 'paper-plane' },
+  { name: 'Guide', component: GuideScreen, sf: ['book', 'book.fill'], androidIcon: 'book' },
   { name: 'Profile', component: ProfileScreen, sf: ['person', 'person.fill'], androidIcon: 'person' },
 ];
 

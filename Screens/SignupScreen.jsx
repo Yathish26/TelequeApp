@@ -8,7 +8,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useAuth } from '../lib/auth';
 import { Glass, GlassBackground, GlassButton, Notice, TelegramLogo } from '../components/ui';
 
-const INPUT = 'rounded-xl border border-white/80 bg-white/60 px-4 py-3.5 text-base text-slate-900';
+// text-[16px] (not text-base): text-base also sets a line height, which clips the bottom of g, y, p in iOS inputs.
+const INPUT = 'rounded-xl border border-white/80 bg-white/60 px-4 py-3.5 text-[16px] text-slate-900';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_PASSWORD = 6;
 
