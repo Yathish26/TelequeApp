@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Teleque",
-    "slug": "teleque",
+    "slug": "telapp",
     "scheme": "teleque",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -15,6 +15,7 @@
       }
     },
     "android": {
+      "package": "com.yathz.teleque",
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF",
         "foregroundImage": "./assets/android-icon-foreground.png"
@@ -30,7 +31,17 @@
       }
     },
     "plugins": [
-      "expo-secure-store"
+      "expo-secure-store",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 220,
+          "resizeMode": "contain",
+          "backgroundColor": "#FFFFFF"
+        }
+      ],
+      "expo-status-bar"
     ]
   }
 }

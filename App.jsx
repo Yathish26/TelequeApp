@@ -1,6 +1,6 @@
 import './global.css';
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, Platform, View } from 'react-native';
+import { ActivityIndicator, LogBox, Platform, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -13,6 +13,10 @@ import GuideScreen from './Screens/GuideScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import LoginScreen from './Screens/LoginScreen';
 import SignupScreen from './Screens/SignupScreen';
+
+// NativeWind (react-native-css-interop) touches ImageBackground when it sets up className support,
+// which trips React Native's deprecation warning. The app itself doesn't use ImageBackground.
+LogBox.ignoreLogs(['ImageBackground is deprecated']);
 
 const BLUE = '#2563eb';
 const isAndroid = Platform.OS === 'android';
