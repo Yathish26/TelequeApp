@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { useAuth } from '../lib/auth';
-import { BLUE, Glass, GlassBackground, GlassButton, Notice, TelegramLogo } from '../components/ui';
+import { BLUE, Glass, GlassBackground, GlassButton, Notice, TelequeLogo } from '../components/ui';
 
 const HIGHLIGHTS = [
     { icon: 'flash-outline', label: 'Auto-publish' },
@@ -47,7 +47,7 @@ export default function LoginScreen({ onShowSignup }) {
                 {/* Brand */}
                 <View className="mb-8 items-center">
                     <Glass className="mb-5 h-24 w-24 items-center justify-center rounded-full">
-                        <TelegramLogo size={68} />
+                        <TelequeLogo size={84} />
                     </Glass>
                     <Text className="text-3xl font-bold text-slate-900">TeleQueue</Text>
                     <Text className="mt-1.5 text-center text-[15px] text-slate-600">

@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { requireOptionalNativeModule } from 'expo';
 import { cssInterop } from 'nativewind';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -69,6 +69,18 @@ export function TelegramLogo({ size = 24 }) {
         >
             <Ionicons name="paper-plane" size={size * 0.5} color="#fff" style={{ marginLeft: -size * 0.05 }} />
         </View>
+    );
+}
+
+// The app's own logo (calendar + paper plane), the same artwork as the app icon.
+export function TelequeLogo({ size = 24 }) {
+    return (
+        <Image
+            source={require('../assets/icon.png')}
+            style={{ width: size, height: size, borderRadius: size / 2 }}
+            resizeMode="cover"
+            accessibilityLabel="TeleQueue logo"
+        />
     );
 }
 

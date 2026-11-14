@@ -52,6 +52,17 @@ export function AuthProvider({ children }) {
         await signOutLocally();
     }, [signOutLocally]);
 
+    const changePassword = useCallback(
+        (currentPassword, newPassword) => request('put', '/api/auth/password', { currentPassword, newPassword }),
+        [],
+    );
+
+    // Permanently deletes the account on the server, then signs out here.
+    const deleteAccount = useCallback(async (password) => {
+        await request('delete', '/api/auth/user', { password });
+        await signOutLocally();
+    }, [signOutLocally]);
+
     // Not signed in (or the session expired): send them back to the login screen.
     const handleAuthError = useCallback((err) => {
         if (err.status === 401 || err.status === 403) {
@@ -62,8 +73,8 @@ export function AuthProvider({ children }) {
     }, [signOutLocally]);
 
     const value = useMemo(
-        () => ({ status, user, signIn, signUp, signOut, refreshUser: loadUser, handleAuthError }),
-        [status, user, signIn, signUp, signOut, loadUser, handleAuthError],
+        () => ({ status, user, signIn, signUp, signOut, changePassword, deleteAccount, refreshUser: loadUser, handleAuthError }),
+        [status, user, signIn, signUp, signOut, changePassword, deleteAccount, loadUser, handleAuthError],
     );
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

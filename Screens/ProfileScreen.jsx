@@ -8,6 +8,8 @@ import { APP_VERSION } from '../version';
 import { telegram } from '../lib/api';
 import { useAuth } from '../lib/auth';
 import { BLUE, Glass, GlassBackground, GlassView, liquidGlass } from '../components/ui';
+import ChangePasswordSheet from '../components/ChangePasswordSheet';
+import DeleteAccountSheet from '../components/DeleteAccountSheet';
 
 const initialsOf = (name = '') =>
     name.trim().split(/\s+/).slice(0, 2).map((part) => part[0]?.toUpperCase()).join('') || '?';
@@ -17,6 +19,8 @@ export default function ProfileScreen({ navigation }) {
     const { user, signOut, refreshUser, handleAuthError } = useAuth();
     const [totals, setTotals] = useState({ bots: 0, pending: 0, sent: 0 });
     const [refreshing, setRefreshing] = useState(false);
+    const [changingPassword, setChangingPassword] = useState(false);
+    const [deletingAccount, setDeletingAccount] = useState(false);
 
     // Bot totals across all of the user's bots, from the same endpoint the Bots tab uses.
     const loadTotals = useCallback(async () => {
@@ -56,6 +60,7 @@ export default function ProfileScreen({ navigation }) {
     const links = [
         { icon: 'paper-plane-outline', label: 'My Bots', onPress: () => navigation.navigate('Bots') },
         { icon: 'help-circle-outline', label: 'How it works', onPress: () => navigation.navigate('Guide') },
+        { icon: 'key-outline', label: 'Change password', onPress: () => setChangingPassword(true) },
     ];
 
     return (
@@ -126,8 +131,28 @@ export default function ProfileScreen({ navigation }) {
                     </GlassView>
                 </Pressable>
 
+                {/* Danger zone */}
+                <Text className="mb-2 ml-1 mt-8 text-xs font-medium uppercase tracking-wide text-slate-500">Danger zone</Text>
+                <Glass className="overflow-hidden rounded-3xl">
+                    <Pressable
+                        onPress={() => setDeletingAccount(true)}
+                        className="flex-row items-center gap-3 px-4 py-4 active:opacity-60"
+                        accessibilityRole="button"
+                    >
+                        <Ionicons name="trash-outline" size={20} color="#dc2626" />
+                        <View className="flex-1">
+                            <Text className="text-base font-medium text-red-600">Delete account</Text>
+                            <Text className="text-xs text-slate-500">Permanently remove your account, bots and queues</Text>
+                        </View>
+                        <Ionicons name="chevron-forward" size={18} color="#64748b" />
+                    </Pressable>
+                </Glass>
+
                 <Text className="mt-6 text-center text-xs text-slate-500">Version {APP_VERSION}</Text>
             </ScrollView>
+
+            <ChangePasswordSheet visible={changingPassword} onClose={() => setChangingPassword(false)} />
+            <DeleteAccountSheet visible={deletingAccount} onClose={() => setDeletingAccount(false)} />
         </View>
     );
 }
