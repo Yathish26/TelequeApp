@@ -4,6 +4,7 @@
     "slug": "telapp",
     "scheme": "teleque",
     "version": "1.0.0",
+    "runtimeVersion": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -42,6 +43,9 @@
         }
       ],
       "expo-status-bar"
-    ]
+    ],
+    "updates": {
+      "url": "https://u.expo.dev/eac6c04f-d1e2-4209-838c-571488be021c"
+    }
   }
 }
